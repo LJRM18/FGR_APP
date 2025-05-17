@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -32,123 +29,122 @@
 
         <form method="POST">
             <div class="row">
-                <!-- Las variables (C1 a C30) se muestran tal como tú las tenías -->
-
+                <!-- Campos del formulario con valores persistentes -->
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Age</label>
-                    <input type="number" name="C1" min="10" max="55" step="any" class="form-control" required>
+                    <input type="number" name="C1" value="{{ request.form.get('C1', '') }}" min="10" max="55" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">BMI</label>
-                    <input type="number" name="C2" min="10" max="60" step="any" class="form-control" required>
+                    <input type="number" name="C2" value="{{ request.form.get('C2', '') }}" min="10" max="60" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Gestational age of delivery (weeks)</label>
-                    <input type="number" name="C3" min="20" max="42" step="any" class="form-control" required>
+                    <input type="number" name="C3" value="{{ request.form.get('C3', '') }}" min="20" max="42" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Gravidity</label>
-                    <input type="number" name="C4" min="0" max="10" step="1" class="form-control" required>
+                    <input type="number" name="C4" value="{{ request.form.get('C4', '') }}" min="0" max="10" step="1" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Parity</label>
-                    <input type="number" name="C5" min="0" max="10" step="1" class="form-control" required>
+                    <input type="number" name="C5" value="{{ request.form.get('C5', '') }}" min="0" max="10" step="1" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Initial onset symptoms (IOS)</label>
                     <select name="C6" class="form-select" required>
                         <option value="">Seleccione...</option>
-                        <option value="0">Edema</option>
-                        <option value="1">Hypertension</option>
-                        <option value="2">FGR</option>
+                        <option value="0" {% if request.form.get('C6') == '0' %}selected{% endif %}>Edema</option>
+                        <option value="1" {% if request.form.get('C6') == '1' %}selected{% endif %}>Hypertension</option>
+                        <option value="2" {% if request.form.get('C6') == '2' %}selected{% endif %}>FGR</option>
                     </select>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Gestational age of IOS onset (weeks)</label>
-                    <input type="number" name="C7" min="20" max="42" step="any" class="form-control" required>
+                    <input type="number" name="C7" value="{{ request.form.get('C7', '') }}" min="20" max="42" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Interval from IOS onset to delivery (days)</label>
-                    <input type="number" name="C8" min="0" max="100" step="1" class="form-control" required>
+                    <input type="number" name="C8" value="{{ request.form.get('C8', '') }}" min="0" max="100" step="1" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Gestational age of hypertension onset (weeks)</label>
-                    <input type="number" name="C9" min="20" max="42" step="any" class="form-control" required>
+                    <input type="number" name="C9" value="{{ request.form.get('C9', '') }}" min="20" max="42" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Interval from hypertension onset to delivery (days)</label>
-                    <input type="number" name="C10" min="0" max="100" step="1" class="form-control" required>
+                    <input type="number" name="C10" value="{{ request.form.get('C10', '') }}" min="0" max="100" step="1" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Gestational age of edema onset (weeks)</label>
-                    <input type="number" name="C11" min="20" max="42" step="any" class="form-control" required>
+                    <input type="number" name="C11" value="{{ request.form.get('C11', '') }}" min="20" max="42" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Interval from edema onset to delivery (days)</label>
-                    <input type="number" name="C12" min="0" max="100" step="1" class="form-control" required>
+                    <input type="number" name="C12" value="{{ request.form.get('C12', '') }}" min="0" max="100" step="1" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Gestational age of proteinuria onset (weeks)</label>
-                    <input type="number" name="C13" min="20" max="42" step="any" class="form-control" required>
+                    <input type="number" name="C13" value="{{ request.form.get('C13', '') }}" min="20" max="42" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Interval from proteinuria onset to delivery (days)</label>
-                    <input type="number" name="C14" min="0" max="100" step="1" class="form-control" required>
+                    <input type="number" name="C14" value="{{ request.form.get('C14', '') }}" min="0" max="100" step="1" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Expectant treatment</label>
-                    <input type="number" name="C15" min="0" max="1" step="1" class="form-control" required>
+                    <input type="number" name="C15" value="{{ request.form.get('C15', '') }}" min="0" max="1" step="1" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Anti-hypertensive therapy before hospitalization</label>
-                    <input type="number" name="C16" min="0" max="1" step="1" class="form-control" required>
+                    <input type="number" name="C16" value="{{ request.form.get('C16', '') }}" min="0" max="1" step="1" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Past history</label>
                     <select name="C17" class="form-select" required>
                         <option value="">Seleccione...</option>
-                        <option value="0">No</option>
-                        <option value="1">Hypertension</option>
-                        <option value="2">PCOS</option>
+                        <option value="0" {% if request.form.get('C17') == '0' %}selected{% endif %}>No</option>
+                        <option value="1" {% if request.form.get('C17') == '1' %}selected{% endif %}>Hypertension</option>
+                        <option value="2" {% if request.form.get('C17') == '2' %}selected{% endif %}>PCOS</option>
                     </select>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum systolic blood pressure</label>
-                    <input type="number" name="C18" min="80" max="250" step="any" class="form-control" required>
+                    <input type="number" name="C18" value="{{ request.form.get('C18', '') }}" min="80" max="250" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum diastolic blood pressure</label>
-                    <input type="number" name="C19" min="40" max="150" step="any" class="form-control" required>
+                    <input type="number" name="C19" value="{{ request.form.get('C19', '') }}" min="40" max="150" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Reasons for delivery</label>
                     <select name="C20" class="form-select" required>
                         <option value="">Seleccione...</option>
-                        <option value="0">HELLP Syndrome</option>
-                        <option value="1">Fetal distress</option>
-                        <option value="2">Organ dysfunction</option>
-                        <option value="3">Uncontrolled hypertension</option>
-                        <option value="4">Edema</option>
-                        <option value="5">FGR</option>
+                        <option value="0" {% if request.form.get('C20') == '0' %}selected{% endif %}>HELLP Syndrome</option>
+                        <option value="1" {% if request.form.get('C20') == '1' %}selected{% endif %}>Fetal distress</option>
+                        <option value="2" {% if request.form.get('C20') == '2' %}selected{% endif %}>Organ dysfunction</option>
+                        <option value="3" {% if request.form.get('C20') == '3' %}selected{% endif %}>Uncontrolled hypertension</option>
+                        <option value="4" {% if request.form.get('C20') == '4' %}selected{% endif %}>Edema</option>
+                        <option value="5" {% if request.form.get('C20') == '5' %}selected{% endif %}>FGR</option>
                     </select>
                 </div>
 
@@ -156,54 +152,54 @@
                     <label class="form-label">Mode of delivery</label>
                     <select name="C21" class="form-select" required>
                         <option value="">Seleccione...</option>
-                        <option value="0">CS</option>
-                        <option value="1">Odinopoeia</option>
+                        <option value="0" {% if request.form.get('C21') == '0' %}selected{% endif %}>CS</option>
+                        <option value="1" {% if request.form.get('C21') == '1' %}selected{% endif %}>Odinopoeia</option>
                     </select>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum BNP value</label>
-                    <input type="number" name="C22" min="0" max="1000" step="any" class="form-control" required>
+                    <input type="number" name="C22" value="{{ request.form.get('C22', '') }}" min="0" max="1000" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum values of creatinine</label>
-                    <input type="number" name="C23" min="0" max="100" step="any" class="form-control" required>
+                    <input type="number" name="C23" value="{{ request.form.get('C23', '') }}" min="0" max="100" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum uric acid value</label>
-                    <input type="number" name="C24" min="0" max="100" step="any" class="form-control" required>
+                    <input type="number" name="C24" value="{{ request.form.get('C24', '') }}" min="0" max="100" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum proteinuria value</label>
-                    <input type="number" name="C25" min="0" max="100" step="any" class="form-control" required>
+                    <input type="number" name="C25" value="{{ request.form.get('C25', '') }}" min="0" max="100" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum total protein value</label>
-                    <input type="number" name="C26" min="0" max="100" step="any" class="form-control" required>
+                    <input type="number" name="C26" value="{{ request.form.get('C26', '') }}" min="0" max="100" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum albumin value</label>
-                    <input type="number" name="C27" min="0" max="100" step="any" class="form-control" required>
+                    <input type="number" name="C27" value="{{ request.form.get('C27', '') }}" min="0" max="100" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum ALT value</label>
-                    <input type="number" name="C28" min="0" max="100" step="any" class="form-control" required>
+                    <input type="number" name="C28" value="{{ request.form.get('C28', '') }}" min="0" max="100" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum AST value</label>
-                    <input type="number" name="C29" min="0" max="100" step="any" class="form-control" required>
+                    <input type="number" name="C29" value="{{ request.form.get('C29', '') }}" min="0" max="100" step="any" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Maximum platelet value</label>
-                    <input type="number" name="C30" min="0" max="1000000" step="1" class="form-control" required>
+                    <input type="number" name="C30" value="{{ request.form.get('C30', '') }}" min="0" max="1000000" step="1" class="form-control" required>
                 </div>
             </div>
 
@@ -214,6 +210,27 @@
         </form>
     </div>
 </div>
+
+<!-- Script para persistencia con localStorage (como respaldo) -->
+<script>
+    // Guardar datos al enviar el formulario
+    document.querySelector('form').addEventListener('submit', function() {
+        document.querySelectorAll('input, select').forEach(element => {
+            if (element.name) {
+                localStorage.setItem(`form_${element.name}`, element.value);
+            }
+        });
+    });
+
+    // Cargar datos al iniciar la página
+    window.addEventListener('load', function() {
+        document.querySelectorAll('input, select').forEach(element => {
+            if (element.name && localStorage.getItem(`form_${element.name}`)) {
+                element.value = localStorage.getItem(`form_${element.name}`);
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

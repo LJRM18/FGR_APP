@@ -19,7 +19,7 @@ from models.fcm_model import fuzzy_predict
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'xlsx', 'csv'}
 
-app = Flask(__name__)
+app = Flask(_name_)
 app.secret_key = 'supersecretkey'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -175,7 +175,9 @@ def predict_batch(model):
 # ---------------------------
 # INICIO DEL SERVIDOR
 # ---------------------------
-if __name__ == '__main__':
+if _name_ == '_main_':
     app.run(debug=True)
+
+
 
 
