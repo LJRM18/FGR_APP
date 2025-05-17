@@ -9,3 +9,4 @@ openpyxl
 xlrd
 flask-cors
 gunicorn
+tensorflow
