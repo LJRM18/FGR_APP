@@ -1,0 +1,219 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción Individual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-5">
+        <h2 class="text-center mb-4">🔍 Predicción Individual</h2>
+        <p class="text-center text-muted">Modelo seleccionado: <strong>{{ model|capitalize }}</strong></p>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger text-center">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        {% if result %}
+            <div class="alert alert-info text-center">
+                <strong>Resultado:</strong> {{ result }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="row">
+                <!-- Las variables (C1 a C30) se muestran tal como tú las tenías -->
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Age</label>
+                    <input type="number" name="C1" min="10" max="55" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">BMI</label>
+                    <input type="number" name="C2" min="10" max="60" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Gestational age of delivery (weeks)</label>
+                    <input type="number" name="C3" min="20" max="42" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Gravidity</label>
+                    <input type="number" name="C4" min="0" max="10" step="1" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Parity</label>
+                    <input type="number" name="C5" min="0" max="10" step="1" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Initial onset symptoms (IOS)</label>
+                    <select name="C6" class="form-select" required>
+                        <option value="">Seleccione...</option>
+                        <option value="0">Edema</option>
+                        <option value="1">Hypertension</option>
+                        <option value="2">FGR</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Gestational age of IOS onset (weeks)</label>
+                    <input type="number" name="C7" min="20" max="42" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Interval from IOS onset to delivery (days)</label>
+                    <input type="number" name="C8" min="0" max="100" step="1" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Gestational age of hypertension onset (weeks)</label>
+                    <input type="number" name="C9" min="20" max="42" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Interval from hypertension onset to delivery (days)</label>
+                    <input type="number" name="C10" min="0" max="100" step="1" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Gestational age of edema onset (weeks)</label>
+                    <input type="number" name="C11" min="20" max="42" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Interval from edema onset to delivery (days)</label>
+                    <input type="number" name="C12" min="0" max="100" step="1" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Gestational age of proteinuria onset (weeks)</label>
+                    <input type="number" name="C13" min="20" max="42" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Interval from proteinuria onset to delivery (days)</label>
+                    <input type="number" name="C14" min="0" max="100" step="1" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Expectant treatment</label>
+                    <input type="number" name="C15" min="0" max="1" step="1" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Anti-hypertensive therapy before hospitalization</label>
+                    <input type="number" name="C16" min="0" max="1" step="1" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Past history</label>
+                    <select name="C17" class="form-select" required>
+                        <option value="">Seleccione...</option>
+                        <option value="0">No</option>
+                        <option value="1">Hypertension</option>
+                        <option value="2">PCOS</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum systolic blood pressure</label>
+                    <input type="number" name="C18" min="80" max="250" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum diastolic blood pressure</label>
+                    <input type="number" name="C19" min="40" max="150" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Reasons for delivery</label>
+                    <select name="C20" class="form-select" required>
+                        <option value="">Seleccione...</option>
+                        <option value="0">HELLP Syndrome</option>
+                        <option value="1">Fetal distress</option>
+                        <option value="2">Organ dysfunction</option>
+                        <option value="3">Uncontrolled hypertension</option>
+                        <option value="4">Edema</option>
+                        <option value="5">FGR</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Mode of delivery</label>
+                    <select name="C21" class="form-select" required>
+                        <option value="">Seleccione...</option>
+                        <option value="0">CS</option>
+                        <option value="1">Odinopoeia</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum BNP value</label>
+                    <input type="number" name="C22" min="0" max="1000" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum values of creatinine</label>
+                    <input type="number" name="C23" min="0" max="100" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum uric acid value</label>
+                    <input type="number" name="C24" min="0" max="100" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum proteinuria value</label>
+                    <input type="number" name="C25" min="0" max="100" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum total protein value</label>
+                    <input type="number" name="C26" min="0" max="100" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum albumin value</label>
+                    <input type="number" name="C27" min="0" max="100" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum ALT value</label>
+                    <input type="number" name="C28" min="0" max="100" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum AST value</label>
+                    <input type="number" name="C29" min="0" max="100" step="any" class="form-control" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Maximum platelet value</label>
+                    <input type="number" name="C30" min="0" max="1000000" step="1" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary px-5">Predecir</button>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary px-4">Volver al Inicio</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

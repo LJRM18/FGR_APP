@@ -1,0 +1,53 @@
+body {
+    background-color: #121212;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    background-color: #1e1e1e;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+h2, h3, h5 {
+    color: #00ffff;
+}
+
+.btn-primary {
+    background-color: #00bcd4;
+    border: none;
+}
+
+.btn-success {
+    background-color: #00e676;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #616161;
+    border: none;
+}
+
+.form-control, .form-select {
+    background-color: #2c2c2c;
+    border: 1px solid #555;
+    color: #ffffff;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #333;
+    border-color: #00bcd4;
+    color: #ffffff;
+}
+
+.alert {
+    border-radius: 10px;
+}
+
+img {
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    max-width: 100%;
+}
